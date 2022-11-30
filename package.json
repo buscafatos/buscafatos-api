@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "docker:build": "docker build -t buscafatos/buscafatos-api .",
+    "docker:run": "docker run -p 8000:8000 buscafatos/buscafatos-api"
   },
   "repository": {
     "type": "git",
