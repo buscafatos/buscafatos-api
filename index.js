@@ -61,7 +61,7 @@ async function crawl(requestUrl) {
 
     await browser.close();
 
-    // console.log(content);
+    console.log(extractedText);
 
     return extractedText;
 }
