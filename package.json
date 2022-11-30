@@ -1,0 +1,34 @@
+{
+  "name": "buscafatos-api",
+  "version": "0.0.1",
+  "description": "busca fatos BETA API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/buscafatos/buscafatos-api.git"
+  },
+  "keywords": [
+    "fact-check",
+    "anti",
+    "fake-news",
+    "nodejs",
+    "express"
+  ],
+  "author": "fcavalcantirj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buscafatos/buscafatos-api/issues"
+  },
+  "homepage": "https://github.com/buscafatos/buscafatos-api#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-json-transform": "^1.1.2",
+    "puppeteer": "^19.3.0",
+    "url-parse": "^1.5.10"
+  }
+}
