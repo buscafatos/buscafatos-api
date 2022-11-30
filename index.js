@@ -40,6 +40,31 @@ let nestedMap = {
   }
 };
 
+async function crawl(requestUrl) {
+
+    const queryObject = parse(requestUrl, true).query;
+
+    let fullUrl = `https://${queryObject.url}`;
+
+    console.log(`crawling url = [${fullUrl}]`);
+
+    // const browser = await puppeteer.launch();
+
+    const browser = await puppeteer.launch({
+        headless: true
+    });
+    const page = await browser.newPage();
+    await page.goto(fullUrl, {waitUntil: 'domcontentloaded'});
+
+    // let content = await page.content();
+    const extractedText = await page.$eval('*', (el) => el.innerText);
+
+    await browser.close();
+
+    // console.log(content);
+
+    return extractedText;
+}
 
 async function asyncHandler(requestUrl, query) {
 
@@ -113,6 +138,12 @@ app.get('/v1/search/:query', async (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   let _json = await asyncHandler(fullUrl, req.params.query);
   res.json(_json);
+})
+
+app.get('/v1/crawl', async (req, res) => {
+  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  let _json = await crawl(fullUrl);
+  res.send(_json);
 })
 
 app.listen(port, () => {
