@@ -1,0 +1,92 @@
+openapi: 3.0.0
+servers: 
+ - url: https://api.buscafatos.com.br/
+info:
+  contact:
+    name: Busca Fatos team
+    email: buscafatos@gmail.com
+    url: https://buscafatos.com.br
+  version: 0.0.4
+  title: busca-fatos-api
+  description: ANTI FAKE-NEWS public tools and API'S
+paths:
+  '/v1/search/{query}':
+    get:
+      tags:
+        - Search
+      parameters:
+        - name: query
+          in: path
+          required: true
+          description: keywords or phrase to be searched
+          schema:
+            type: string
+        - name: raw
+          in: query
+          required: false
+          description: if '1' returns raw JSON from google
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: st
+          in: query
+          required: false
+          description: start index (not higher than 90)
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 90 
+        - name: sort
+          in: query
+          required: false
+          description: sort by attribute 'date' for example
+          schema:
+            type: string
+        - name: count
+          in: query
+          required: false
+          description: number of results (1 to 10)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        totalResults:
+          type: string
+        searchTerms:
+          type: string
+        count:
+          type: integer
+        startIndex:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseItem'
+    ResponseItem:
+      type: object
+      properties:
+        title:
+          type: string
+        htmlTitle:
+          type: string
+        link:
+          type: string
+        snippet:
+          type: string
+        htmlSnippet:
+          type: string
+        thumbnail:
+          type: string
