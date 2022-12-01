@@ -86,7 +86,7 @@ async function asyncHandler(requestUrl, query) {
     _url.searchParams.set('key', API_KEY);
     _url.searchParams.set('cx', SEARCH_ENGINE_ID);
 
-    console.log(_url);
+    // console.log(_url);
 
     // pagination
     if (queryObject.st) {
