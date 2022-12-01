@@ -61,9 +61,11 @@ async function crawl(requestUrl) {
 
     await browser.close();
 
-    console.log(extractedText);
+    // console.log(extractedText);
 
-    return extractedText;
+    let html = `<html><head><tittle>${requestUrl}</tittle></head><body>${extractedText}</body></html>`;
+
+    return html;
 }
 
 async function asyncHandler(requestUrl, query) {
@@ -142,10 +144,10 @@ app.get('/v1/search/:query', async (req, res) => {
 
 app.get('/v1/crawl', async (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  let _json = await crawl(fullUrl);
-  res.send(_json);
+  let _html = await crawl(fullUrl);
+  res.send(_html);
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`buscafatos API listening on port ${port}`)
 })
