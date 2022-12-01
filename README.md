@@ -4,7 +4,7 @@
 
 ## Experimente
 
-- https://app.swaggerhub.com/apis/fcavalcantirj/busca-fatos-api/0.0.3
+- https://app.swaggerhub.com/apis/fcavalcantirj/busca-fatos-api/
 
 ## Requisitos
 
