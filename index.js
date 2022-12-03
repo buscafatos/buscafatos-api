@@ -1,6 +1,8 @@
 require('dotenv').config()
 
 const puppeteer = require('puppeteer');
+const puppeteerConfig = require('./puppeteerConfig')
+
 const parse = require('url-parse');
 const { transform } = require("node-json-transform");
 const express = require('express')
@@ -51,7 +53,9 @@ async function crawl(requestUrl) {
     // const browser = await puppeteer.launch();
 
     const browser = await puppeteer.launch({
-        headless: true
+        headless: true,
+        args: puppeteerConfig
+
     });
     const page = await browser.newPage();
     await page.goto(fullUrl, {waitUntil: 'domcontentloaded'});
